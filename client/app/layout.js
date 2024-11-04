@@ -27,18 +27,18 @@ export default function RootLayout({ children }) {
     <meta name="p:domain_verify" content="0251c9ad8f0e5ddccd4f306b6f6fc871"/>
 
 {/* Adding noscript using dangerouslySetInnerHTML */}
-<noscript
+{/* <noscript
   dangerouslySetInnerHTML={{
     __html: `
       <img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=406823858532963&ev=PageView&noscript=1" />
     `,
   }}
-/>
+/> */}
   </head>
 
       {/* Google Analytics Script */}
-      <Script
+      {/* <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-7NN5GJS7SP"
         />
@@ -49,10 +49,10 @@ export default function RootLayout({ children }) {
             gtag('js', new Date());
             gtag('config', 'G-7NN5GJS7SP');
           `}
-        </Script>
+        </Script> */}
 
         {/* Google Ads Conversion Script */}
-        <Script
+        {/* <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-16455767404"
         />
@@ -63,10 +63,10 @@ export default function RootLayout({ children }) {
             gtag('js', new Date());
             gtag('config', 'AW-16455767404');
           `}
-        </Script>
+        </Script> */}
 
         {/* gtag_report_conversion Function */}
-<Script id="gtag-report-conversion">
+{/* <Script id="gtag-report-conversion">
 {`function gtag_report_conversion(url) {
   var callback = function () {
     if (typeof(url) != 'undefined') {
@@ -82,19 +82,19 @@ export default function RootLayout({ children }) {
   });
   return false;
 }`}
-</Script>
+</Script> */}
 
 {/* Google Tag event */}
-<Script id="google-tag-event">
+{/* <Script id="google-tag-event">
   {`
     gtag('event', 'conversion_event_default', {
       // Add event parameters here if needed
     });
   `}
-</Script>
+</Script> */}
 
 {/* Meta Pixel Code */}
-<Script id="meta-pixel">
+{/* <Script id="meta-pixel">
   {`
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -107,15 +107,15 @@ export default function RootLayout({ children }) {
     fbq('init', '406823858532963');
     fbq('track', 'PageView');
   `}
-</Script>
+</Script> */}
 
-<Script>
+{/* <Script>
 { ` 
 gtag('event', 'conversion_event_phone_call_lead', {
     // <event_parameters>
   });
   `}
-</Script>
+</Script> */}
 
       <body>
         <StoreProvider>
