@@ -52,6 +52,18 @@ export default function RootLayout({ children }) {
   gtag('config', 'G-L2LD88SFKL');
           `}
         </Script>
+      
+      {/* Google tag (gtag.js)  */}
+<Script async src="https://www.googletagmanager.com/gtag/js?id=G-8XM4QD3GSE"/>
+
+<Script>
+ { `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8XM4QD3GSE');`}
+</Script>
+
 
         {/* Google Ads Conversion Script */}
         {/* <Script
