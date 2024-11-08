@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import { connectMongo } from "./src/configs/db/mongo/mongoConfig.js";
 import { envAccess } from "./src/utils/index.js";
 import { CustomError } from "./src/utils/errors/customError.js";
-import path from "path"
+
 
 // -------------------------------------------------------------------------------------------------------------
 dotenv.config();
