@@ -29,6 +29,8 @@ app.use(
             "http://localhost:5175",
             "https://www.thepizzainnowatford.com",
             "https://www.thepizzainnowatford.co.uk",
+            "https://thepizzainnowatford.com",
+            "https://thepizzainnowatford.co.uk",
             "https://admin.thepizzainnowatford.com",
             "https://admin.thepizzainnowatford.co.uk",
             "https://www.pizzainno.com",
@@ -53,6 +55,8 @@ app.use(
             "https://www.pizzainno.co.uk",
             "https://admin.pizzainno.com",
             "https://admin.pizzainno.co.uk",
+            "https://thepizzainnowatford.com",
+            "https://thepizzainnowatford.co.uk",
 
           ],
           methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
