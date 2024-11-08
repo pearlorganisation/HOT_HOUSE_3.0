@@ -31,6 +31,10 @@ app.use(
             "https://www.thepizzainnowatford.co.uk",
             "https://admin.thepizzainnowatford.com",
             "https://admin.thepizzainnowatford.co.uk",
+            "https://www.pizzainno.com",
+            "https://www.pizzainno.co.uk",
+            "https://admin.pizzainno.com",
+            "https://admin.pizzainno.co.uk",
           ],
           credentials: true,
         }
@@ -45,6 +49,10 @@ app.use(
             "https://www.thepizzainnowatford.co.uk",
             "https://admin.thepizzainnowatford.com",
             "https://admin.thepizzainnowatford.co.uk",
+            "https://www.pizzainno.com",
+            "https://www.pizzainno.co.uk",
+            "https://admin.pizzainno.com",
+            "https://admin.pizzainno.co.uk",
 
           ],
           methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
