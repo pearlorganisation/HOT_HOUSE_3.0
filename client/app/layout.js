@@ -52,6 +52,14 @@ export default function RootLayout({ children }) {
   gtag('config', 'G-L2LD88SFKL');
           `}
         </Script>
+
+        <Script id="google-tag-event">
+  {`
+  gtag('event', 'ads_conversion_Shopping_Cart_2', {
+    // <event_parameters>
+  });
+  `}
+</Script>
       
       {/* Google tag (gtag.js)  */}
 {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=G-8XM4QD3GSE"/>
@@ -99,13 +107,8 @@ export default function RootLayout({ children }) {
 </Script> */}
 
 {/* Google Tag event */}
-{/* <Script id="google-tag-event">
-  {`
-    gtag('event', 'conversion_event_default', {
-      // Add event parameters here if needed
-    });
-  `}
-</Script> */}
+
+
 
 {/* Meta Pixel Code */}
 {/* <Script id="meta-pixel">

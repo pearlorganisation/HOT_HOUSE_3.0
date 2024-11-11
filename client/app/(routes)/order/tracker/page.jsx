@@ -98,7 +98,7 @@ const page = () => {
                 <p>
                 167-169 High Street, Watford, United Kingdom
 <br/>
-thepizzainnowatford@gmail.com</p>
+pizzainno.com@gmail.com</p>
                 <p className=" flex items-center gap-3">
                   <BsFillTelephoneOutboundFill /> <p>+44 1923 318913</p>
                 </p>

@@ -65,7 +65,7 @@ const Footer = () => {
             <a href="https://www.facebook.com/ThePizzaInno" target="_blank" rel="noopener noreferrer"  className="hover:text-yellow-500">
               <FiFacebook size={24} />
             </a>
-            <a href="https://www.instagram.com/thepizzainnowatford" target="_blank" rel="noopener noreferrer"  className="hover:text-yellow-500">
+            <a href="https://www.instagram.com/pizzainnowatford/" target="_blank" rel="noopener noreferrer"  className="hover:text-yellow-500">
               <SlSocialInstagram size={24} />
             </a>
             <a href="https://wa.me/+447769108542" target="_blank" rel="noopener noreferrer"  className="hover:text-yellow-500">
@@ -99,7 +99,7 @@ const Footer = () => {
                 </p>
                 <p className="flex items-center mt-2">
                   <IoMdMail  className="mr-2" size={20} />
-                  <span className="text-center">Email : thepizzainnowatford@gmail.com</span>
+                  <span className="text-center">Email : pizzainno.com@gmail.com</span>
                   
                 </p>
                 <p className="flex items-center mt-2">
