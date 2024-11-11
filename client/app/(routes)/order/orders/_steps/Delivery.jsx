@@ -366,7 +366,7 @@ const Delivery = ({ step }) => {
                         <p className="mb-2">Your order is being placed with:</p>
                         <p className="font-bold">167-169 High Street, Watford, United Kingdom
                             <br />
-                            thepizzainnowatford@gmail.com</p>
+                            pizzainno.com@gmail.com</p>
                         <p className="flex items-center mt-2">
                             <PhoneIcon className="mr-2" />
                             +44 1923 318913
