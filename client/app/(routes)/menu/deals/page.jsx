@@ -1,8 +1,8 @@
 import Deals from "./Deals";
 
 export const metadata = {
-  title: 'Top Pizza Deals | The Pizza Inno | Order online now',
-  description: 'Discover the best pizza takeaway in Watford at The Pizza Inno, Convenient online ordering, quick service, and unbeatable taste. Order now',
+  title: 'Top Pizza Deals | Pizza Inno Watford | Order online now',
+  description: 'Discover the best pizza takeaway in Watford at Pizza Inno Watford, Convenient online ordering, quick service, and unbeatable taste. Order now',
 }
 
 const page = () => {
