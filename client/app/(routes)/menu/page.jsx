@@ -2,8 +2,8 @@ import HomePage from "@/app/_components/HomePage/HomePage";
 import React from "react";
 
 export const metadata = {
-  title: "The Pizza Inno ",
-  description: "Pizza Website"
+  title: "Pizza Inno Watford | Best Pizza in Watford | Order Online Now",
+  description: "Discover the best pizza takeaway in Watford at  Pizza Inno, Convenient online ordering, quick service, and unbeatable taste. Order now"
 };
 
 

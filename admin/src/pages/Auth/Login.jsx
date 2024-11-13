@@ -57,7 +57,7 @@ const handleResetNavigate = ()=>{
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
             <p className="text-2xl">
-               Welcome to The Pizza Inno Admin Panel
+               Welcome to Pizza Inno Watford Admin Panel
               </p>
               <span className="mt-16 inline-block">
                 <svg

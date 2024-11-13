@@ -238,7 +238,7 @@ const [isLoading,setIsLoading] = useState(false)
                 })}
               />
               <label htmlFor="terms" className="text-gray-700">
-                I accept the The Pizza Inno{" "}
+                I accept the Pizza Inno Watford{" "}
                 <a href="/termsAndConditions" className="text-red-800 hover:text-red-700 underline">
                   Terms & Conditions.
                 </a>{" "}

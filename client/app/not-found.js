@@ -1,8 +1,8 @@
 import Link from "next/link"
 
 export const metadata = {
-  title: 'Not Found | Hot House Watford',
-  description: 'Discover the best pizza takeaway in Watford at The Pizza Inno, Convenient online ordering, quick service, and unbeatable taste. Order now',
+  title: 'Not Found | Pizza Inno Watford',
+  description: 'Discover the best pizza takeaway in Watford at Pizza Inno, Convenient online ordering, quick service, and unbeatable taste. Order now',
 }
 
 const page = () => {
