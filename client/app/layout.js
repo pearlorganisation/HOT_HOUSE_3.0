@@ -40,8 +40,7 @@ export default function RootLayout({ children }) {
   </head>
 
       {/* Google Analytics Script */}
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-0EQFCMDCVK"
-        />
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-0EQFCMDCVK"/>
 
         <Script id="google-analytics">
           {`
@@ -59,7 +58,7 @@ export default function RootLayout({ children }) {
     // <event_parameters>
   });
   `}
-
+</Script>
 
       <body>
       <StoreProvider>
