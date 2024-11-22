@@ -40,12 +40,12 @@ export default function RootLayout({ children }) {
   </head>
 
       {/* Google Analytics Script */}
-      <Script
-          async src="https://www.googletagmanager.com/gtag/js?id=G-0EQFCMDCVK"
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-0EQFCMDCVK"
         />
+
         <Script id="google-analytics">
           {`
-    window.dataLayer = window.dataLayer || [];
+   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
@@ -59,8 +59,7 @@ export default function RootLayout({ children }) {
     // <event_parameters>
   });
   `}
-</Script>
-      
+</Script>      
       {/* Google tag (gtag.js)  */}
 {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=G-8XM4QD3GSE"/>
 
