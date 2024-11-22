@@ -41,15 +41,14 @@ export default function RootLayout({ children }) {
 
       {/* Google Analytics Script */}
       <Script
-          async src="https://www.googletagmanager.com/gtag/js?id=G-L2LD88SFKL"
-        />
+       async src="https://www.googletagmanager.com/gtag/js?id=G-0EQFCMDCVK"/>
         <Script id="google-analytics">
           {`
-    window.dataLayer = window.dataLayer || [];
+   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-L2LD88SFKL');
+  gtag('config', 'G-0EQFCMDCVK');
           `}
         </Script>
 
@@ -59,20 +58,7 @@ export default function RootLayout({ children }) {
     // <event_parameters>
   });
   `}
-</Script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0EQFCMDCVK">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-// Adding a console log to confirm initialization
-  console.log('Google Analytics initialized with ID: G-0EQFCMDCVK');
-
-  gtag('config', 'G-0EQFCMDCVK');
-</script>      
+</Script>      
       {/* Google tag (gtag.js)  */}
 {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=G-8XM4QD3GSE"/>
 
