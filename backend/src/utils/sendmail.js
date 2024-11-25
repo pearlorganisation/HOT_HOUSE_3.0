@@ -34,7 +34,7 @@ export const sendMail = async (email, otp) => {
   let data = await ejs.renderFile(templatePath, { email, otp });
 
   let mailOptions = {
-    from: process.env.NODEMAILER_EMAIL,
+    from: "pizzainno.com@gmail.com",
     to: email,
     subject: "OTP - Pizza Inno Watford",
     html: data,

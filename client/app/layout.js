@@ -59,6 +59,20 @@ export default function RootLayout({ children }) {
   });
   `}
 </Script>
+        <Script id="google-tag-event">
+  {`
+ gtag('event', 'ads_conversion_Sign_Up_Page_1', {
+    // <event_parameters>
+  });
+  `}
+</Script>
+        <Script id="google-tag-event">
+  {`
+  gtag('event', 'ads_conversion_Begin_checkout_1', {
+    // <event_parameters>
+  });
+  `}
+</Script>
 
       <body>
       <StoreProvider>
