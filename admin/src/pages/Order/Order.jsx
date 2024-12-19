@@ -6,6 +6,7 @@ import { deleteFailedOrder, getAllOrders, updateOrder } from '../../features/act
 import OrderViewModal from './OrderViewModal';
 import { jsPDF } from "jspdf";
 import "jspdf-autotable"; 
+import axios from "axios"
 
 
 const Order = () => {
@@ -91,7 +92,7 @@ const [stopViewModal,setStopViewModal] = useState(false)
           dispatch(deleteFailedOrder());
 
           async function getMonthlyOrders(){
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/order/filteredOrders/monthly?year=2024&month=9`)
+            const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL_PRODUCTION}/api/v1/order/filteredOrders/monthly?year=2024&month=9`)
             setMonthlyData(response?.data?.data)
           }
 
