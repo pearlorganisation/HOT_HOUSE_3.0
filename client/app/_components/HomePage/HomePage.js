@@ -1,27 +1,23 @@
 "use client";
 
-import {  Pagination } from "swiper/modules";
+import React, { useEffect, useState } from "react";
+import {  Autoplay, Pagination } from "swiper/modules";
 // import Swiper and modules styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import pizza2 from "../../_assets/images/pizza1.jpg"
-import pizza1 from "../../_assets/images/pizza2.jpeg"
-import pizza3 from "../../_assets/images/pizza3.webp"
-import pizza4 from "../../_assets/images/pizza4.webp"
 import Image from "next/image";
 import DealsCards from "../Pages/DealsCards";
-import { ClockLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { trackerStatus } from "@/app/lib/features/orderDetails/orderDetailsslice";
 import Link from "next/link";
+import { oAuthLogin } from "@/app/lib/features/auth/authSlice";
 
-async function getData() {
+async function getData(boolean) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/deals?isPopular=true`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/deals?collectionOnly=${boolean}`);
     const data = await res.json();
     return data.data; // Assuming `data` has a `data` property containing the actual deals
   } catch (err) {
@@ -35,66 +31,99 @@ async function getBanners(){
     const data = await res.json();
     return data.data
   } catch (error) {
-    console.log("Error Occurred in banner api", err);
+    console.log("Error Occurred in banner api", error);
     return null;
   }
 }
 
+
 const HomePage = () => {
   
-
-  const img = [
-    pizza1,
-    pizza2,
-    pizza3,
-    pizza4
-  ];
   const dispatch = useDispatch()
   
     const [popularDealData, setPopularDealData] = useState(null);
+    const [collectionOnlyDealData, setCollectionOnlyDealData] = useState(null);
     const [banner, setBanner] = useState([]);
+    
+    async function getUserData(){
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("token");
+      window.history.replaceState({}, document.title, "/");
+      if(token)
+      {
+        try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/oAuth/google/userData`,{
+          headers:{
+            Authorization: `Bearer ${token}`,
+          },
+          credentials: 'include'
+        })
+        const data = await res.json();
+        dispatch(oAuthLogin(data.data))
+      } catch (error) {
+        console.log("Error Occurred in banner api", error);
+        return null;
+      }
+    }
+    }
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getData();
+      const data = await getData(false);
+      const collectionOnly = await getData(true);
       setPopularDealData(data);
+      setCollectionOnlyDealData(collectionOnly);
     }
     async function bannerData(){
       const data = await getBanners();
       setBanner(data)
     }
+
+
     dispatch(trackerStatus(false))
     fetchData();
     bannerData()
+    getUserData()
   }, []);
-
-  console.log(banner)
 
   return (
     <>
       <div className="w-full">
       <Swiper
+      autoplay={{
+        delay: 1500, // Time between slides in milliseconds (e.g., 3000ms = 3 seconds)
+        disableOnInteraction: false, // Continue autoplay after user interactions
+      }}
+      speed={1500} // Duration of transition in milliseconds
       className="z-55 "
         slidesPerView={1}
         pagination={{
           clickable: true,
         }}
         
-        modules={[Pagination]}
+        modules={[Pagination,Autoplay]}
       >
         {banner?.map((el, i) => {
             return (
-              <SwiperSlide className="pb-8" key={i} >
-             { el?.deal?._id ? <Link href={{
-              pathname: `menu/deals/deals_view`,
-              query: { card_id: el?.deal?._id, size_id: el?.deal?.sizes[0]?._id  },
-            }}>
-                <Image width={2500} height={1000}  src={el?.banner} alt="Deals Banner" className="h-full mx-auto w-full lg:w-[70%] xl:w-[70%] sm:h-fit md:[30vh] md:h-fit xl:h-[65vh] 2xl:w-[60%] 2xl:h-[70vh]  object-cover" />
+              <SwiperSlide className="pb-8" key={i}>
+              {el?.deal?._id ? (
+                <Link
+                  href={{
+                    pathname: `menu/deals/deals_view`,
+                    query: { card_id: el?.deal?._id, size_id: el?.deal?.sizes[0]?._id }
+                  }}
+                >
+                  <Image
+                    width={1800}
+                    height={700}
+                    src={el?.banner}
+                    alt="Deals Banner"
+                    className="mx-auto w-full h-[20vh] sm:h-auto object-contain sm:object-cover lg:rounded-2xl lg:w-[90%] xl:w-[90%] xl:h-[65vh] 2xl:w-[90%] 2xl:h-[65vh]"
+                  />
                 </Link>
-                :
-                <Image width={2500} height={1000}  src={el?.banner} alt="Deals Banner" className="h-full mx-auto w-full lg:w-[70%] xl:w-[70%] sm:h-fit md:[30vh] md:h-fit xl:h-[65vh] 2xl:w-[60%] 2xl:h-[70vh]  object-cover" />}
-       
-              </SwiperSlide>
+              ) : null}
+            </SwiperSlide>
+
             );
           })}
       </Swiper>
@@ -128,9 +157,39 @@ const HomePage = () => {
     ) : (
       <div className="flex item-center justify-center pt-[25vh] h-[85vh] ">
         {/* <ClockLoader color="#991b1b" size={100} className="border"/> */}
-        <Image src="/HOTPIZZALOGO.jpg" alt="Pizza Logo"  width={300} height={300} className="h-[10vh] w-[30vw]  object-contain" />
+        <Image src="/HOTPIZZALOGO.svg" alt="Pizza Logo"  width={300} height={300} className="h-[10vh] w-[30vw]  object-contain" />
       </div>
     )}
+
+{Array.isArray(collectionOnlyDealData) && collectionOnlyDealData.length>0 && 
+<>
+<div className="mx-auto container max-w-7xl px-5 lg:px-10">
+        <header class="text-center pb-10  bg-white">
+          <div class="flex items-center justify-center my-2">
+            <div class="flex-grow border-t border-red-800"></div>
+
+            <div class="flex-grow border-t border-red-800"></div>
+          </div>
+
+          <div class="flex items-center justify-center">
+            <div class="flex-grow border-t border-red-800"></div>
+            <h1 class="px-4 text-red-800 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">
+              COLLECTION ONLY DEALS
+            </h1>
+            <div class="flex-grow border-t border-red-800"></div>
+          </div>
+        </header>
+      </div>
+
+      <div className="flex gap-8 mb-10 flex-wrap justify-center">
+        { collectionOnlyDealData.map((el) => (
+            <DealsCards key={el.id} path={"menu"} data={el} />
+          ))}
+      </div>
+    
+    </>
+    }
+
     </>
     </>
   );

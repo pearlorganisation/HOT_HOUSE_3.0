@@ -54,7 +54,7 @@ const Sides = () => {
     return (
       <div className="flex justify-center pt-[25vh] h-[85vh]">
         {/* <ClockLoader color="#991b1b" size={100} /> */}
-        <Image src="/HOTPIZZALOGO.jpg" alt="Pizza Logo"  width={300} height={300} className="h-[10vh] w-[30vw]  object-contain" />
+        <Image src="/HOTPIZZALOGO.svg" alt="Pizza Logo"  width={300} height={300} className="h-[10vh] w-[30vw]  object-contain" />
       </div>
     );
   }
@@ -70,7 +70,7 @@ const Sides = () => {
   return (
     <div className="my-4">
       <div>
-        <div className="flex gap-2 mx-4 md:mx-8 my-4 flex-wrap ">
+        <div className="flex gap-2 mx-4 md:mx-8 my-4  flex-wrap ">
           <span className="font-bold">Filter :</span>
           {filterData?.data?.map((data) => (
             <div className="flex gap-2" key={data.filter}>

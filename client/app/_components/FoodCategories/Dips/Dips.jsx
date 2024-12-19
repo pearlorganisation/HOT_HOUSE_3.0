@@ -22,7 +22,7 @@ const Dips = () => {
   if (error) return <div className="h-screen text-red-800 text-center text-3xl md:text-5xl font-bold">Sorry , Failed to load ... </div>;
   if (isLoading) return <div className="flex justify-center pt-[25vh] h-[85vh] ">
     {/* <ClockLoader color="#991b1b" size={100}/> */}
-    <Image src="/HOTPIZZALOGO.jpg" alt="Pizza Logo"  width={300} height={300} className="h-[10vh] w-[30vw]  object-contain" />
+    <Image src="/HOTPIZZALOGO.svg" alt="Pizza Logo"  width={300} height={300} className="h-[10vh] w-[30vw]  object-contain" />
     </div>;
 
   return (
