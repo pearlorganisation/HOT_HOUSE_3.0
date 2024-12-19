@@ -1,22 +1,28 @@
 // ----------------------------------Imports--------------------------------------
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Sidebar from "../Sidebar/Sidebar";
+import { useDispatch } from "react-redux";
+import { getSizePizza } from "../../features/actions/pizza/getCustomization";
 
 // --------------------------------------------------------------------------------
 
 const DefaultLayout = () => {
   // ----------------------------------States--------------------------------------
   const [isSideNavOpen, setIsSideNavOpen] = useState(true);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getSizePizza())
+  },[])
   // --------------------------------------------------------------------------------
   return (
     <div>
       <button
         title="Side navigation"
         type="button"
-        className={`visible fixed right-6 top-2 z-40 order-10 block h-10 w-10 self-center rounded bg-red-400 opacity-100  lg:hidden ${
+        className={`visible fixed right-6 top-2 z-30 order-10 block h-10 w-10 self-center rounded bg-red-400 opacity-100  lg:hidden ${
           isSideNavOpen
             ? "visible opacity-100 [&_span:nth-child(1)]:w-6 [&_span:nth-child(1)]:translate-y-0 [&_span:nth-child(1)]:rotate-45 [&_span:nth-child(3)]:w-0 [&_span:nth-child(2)]:-rotate-45 "
             : ""
@@ -51,11 +57,8 @@ const DefaultLayout = () => {
             setIsSideNavOpen={setIsSideNavOpen}
           />
         </div>
-        <div className="relative flex flex-1 flex-col overflow-y-auto ">
-          {/* <Header
-            isSideNavOpen={isSideNavOpen}
-            setIsSideNavOpen={setIsSideNavOpen}
-          /> */}
+        <div className="flex flex-1 flex-col overflow-y-auto ">
+ 
           <Main />
         </div>
       </div>

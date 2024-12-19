@@ -96,11 +96,11 @@ const page = () => {
               <div className=" md:flex-none flex flex-col  justify-center items-center ">
 
                 <p>
-                167-169 High Street, Watford, United Kingdom
+                1 Joel St, Pinner, Northwood HA6 1LW, UK
 <br/>
-pizzainno.com@gmail.com</p>
+Hothousenorthwood@gmail.com</p>
                 <p className=" flex items-center gap-3">
-                  <BsFillTelephoneOutboundFill /> <p>+44 1923 318913</p>
+                  <BsFillTelephoneOutboundFill /> <p>01923510520</p>
                 </p>
               </div>
             </div>

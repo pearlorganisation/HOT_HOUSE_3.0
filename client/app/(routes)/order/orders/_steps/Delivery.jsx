@@ -1,12 +1,9 @@
-
 import { getorderDetails } from "@/app/lib/features/orderDetails/orderDetailsslice";
 import { getPreviousPath } from "@/app/lib/features/path/pathslice";
-
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-
 import { toast } from "sonner";
 import axios from "axios";
 import { debounce } from "lodash";
@@ -16,26 +13,65 @@ import { MdDelete } from "react-icons/md";
 const Delivery = ({ step }) => {
     const router = useRouter();
     const [addressData, setAddressData] = useState(null);
-    const { userData, isUserLoggedIn } = useSelector((state) => state.auth);
+    const [alert,setAlert] = useState(null)
+    const [miles, setMiles] = useState();
+    console.log(miles)
+    const { userData,isGuestLoggedIn} = useSelector((state) => state.auth);
     const [dayTimeIntervals, setDayTimeIntervals] = useState([]);
     const dispatch = useDispatch();
     const { previousPath } = useSelector((state) => state.path);
 
     async function fetchAddress(userId) {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/address/${userId}`)
-        console.log(response?.data?.data, "response")
         setAddressData(response?.data?.data)
     }
-    useEffect(() => {
-        fetchAddress(userData?._id)
-    }, [userData])
 
+    async function handleVerifyMiles(item){
+        const responseCoordinates = await axios.get(`https://api.getAddress.io/get/${item?.id}?api-key=${process.env.NEXT_PUBLIC_GET_ADDRESS_API}`)
+     
 
-    useEffect(() => {
-        if (previousPath !== "/order/cart") {
-            redirect("/order/cart");
+        const responseMiles = await axios.get(`https://distance-calculator.p.rapidapi.com/v1/one_to_one`,
+            { params: {
+                start_point: `(${responseCoordinates?.data?.latitude},${responseCoordinates?.data?.longitude})`,
+                end_point: '(51.5997,-0.409477)',
+                unit: 'miles',
+                decimal_places: '2'
+              },
+              headers: {
+                'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPID_DISTANCE_API,
+                'x-rapidapi-host': 'distance-calculator.p.rapidapi.com',
+                'Content-Type': 'application/json'
+              }}
+        )
+        setMiles(responseMiles?.data?.distance)
+
+        if(isGuestLoggedIn){
+            if(Number(responseMiles?.data?.distance)<=5.0 ) {
+            setSelectedAddress(item.address)
+                setPostCodeAddresses([])
+                setAlert(null)
+            } 
+            else{
+                toast.error("Sorry ! Out of delivery range")
+                setAlert("Orders are accepted within 5 miles only. For longer distances, please contact us.")
+              }
+            }
+        
+        else
+        { 
+            
+           if(Number(responseMiles?.data?.distance)<=5.0 ) {
+            postAddress(item?.address) 
+            setSavedOrSelectedAddress([item.address])
+            setAlert(null)
         }
-    }, []);
+          else{
+            toast.error("Sorry ! Out of delivery range")
+            setAlert("Orders are accepted within 5 miles only. For longer distances, please contact us.")
+          }
+    }
+    }
+
     const {
         register,
         handleSubmit,
@@ -44,23 +80,7 @@ const Delivery = ({ step }) => {
     } = useForm();
 
 
-
-
-
-    useEffect(() => {
-        const intervals = generateDayTimeIntervals();
-        setDayTimeIntervals(intervals);
-    }, []);
-
-    useEffect(() => {
-        if (!isUserLoggedIn) {
-            toast.error("Please Login...")
-            router.push("/login");
-        }
-    }, [isUserLoggedIn]);
-
-
-    const generateDayTimeIntervals = () => {
+const generateDayTimeIntervals = () => {
         const intervals = [];
         const currentTime = new Date();
         const daysOfWeek = [
@@ -99,6 +119,7 @@ const Delivery = ({ step }) => {
 
         return intervals;
     };
+
     const [postCodeAddresses, setPostCodeAddresses] = useState([])
     const [postalCode, setPostalCode] = useState('')
     const [savedOrSelectedAddress, setSavedOrSelectedAddress] = useState([])
@@ -106,15 +127,11 @@ const Delivery = ({ step }) => {
     const [isUpdateAdress, setUpdateAddress] = useState(false)
 
     const handleSearchDebounce = debounce(async (value) => {
-        const addressAPI_KEY = `https://api.getAddress.io/autocomplete/${value}?api-key=wzTsozpqsU6H14JJAZvUCA43606`
+        const addressAPI_KEY = `https://api.getAddress.io/autocomplete/${value}?api-key=${process.env.NEXT_PUBLIC_GET_ADDRESS_API}`
         const response = await axios.get(addressAPI_KEY)
 
         setPostCodeAddresses(response?.data?.suggestions)
     }, 500);
-    useEffect(() => {
-        handleSearchDebounce(postalCode)
-
-    }, [postalCode])
 
     const postAddress = async (address) => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/address`,
@@ -155,8 +172,7 @@ const Delivery = ({ step }) => {
     }
 
     const onSubmit = async (data) => {
-        console.log(data);
-        if (selectedAddress?.address)
+        if (selectedAddress?.address || (selectedAddress && isGuestLoggedIn))
      {   dispatch(
             getorderDetails({
                 address: selectedAddress,
@@ -199,8 +215,6 @@ const Delivery = ({ step }) => {
                 toast.success("Updated")
                 setUpdateAddress(false)
                 fetchAddress(userData?._id)
-                const newData = await response?.json();
-                // setAddressData(newData);
             }
 
 
@@ -209,10 +223,30 @@ const Delivery = ({ step }) => {
         }
         console.log("submitted")
     }
+
     useEffect(() => {
-        console.log(addressData, "")
+   
         console.log(selectedAddress, "")
-    }, [addressData, selectedAddress])
+    }, [ selectedAddress])
+
+    useEffect(() => {
+        handleSearchDebounce(postalCode)
+
+    }, [postalCode])
+
+    useEffect(() => {
+        if(!isGuestLoggedIn)
+       { fetchAddress(userData?._id)}
+    }, [userData])
+
+
+    useEffect(() => {
+        if (previousPath !== "/order/cart") {
+            redirect("/order/cart");
+        }
+        const intervals = generateDayTimeIntervals();
+        setDayTimeIntervals(intervals);
+    }, []);
 
 
     return (
@@ -221,30 +255,33 @@ const Delivery = ({ step }) => {
             <div className=" border-t-2 p-2 space-y-6">
                 <div className="space-y-2">
                     <label htmlFor="address">Please Enter Your Postal Code</label>{" "}
+                    {alert &&   <div className="text-red-800" >{alert} <span className="font-bold">Current Distance: {miles} miles</span></div>}   
                     <div className="relative">
-                        <input
-                            className="border-2 border-gray-300 rounded-md px-4 py-2 outline-none w-full  focus:border-red-800"
-                            type="text"
-                            name="address"
-                            id=""
-                            placeholder="Enter Your Postal Code"
-                            onChange={(e) => { setPostalCode(e.target.value) }}
-                        />
+                    <input
+    className="border-2 border-gray-300 rounded-md px-4 py-2 outline-none w-full focus:border-red-800"
+    type="text"
+    name="address"
+    id="postalCode"
+    placeholder="Enter Your Postal Code"
+    value={isGuestLoggedIn ? selectedAddress || postalCode : null } // Display selectedAddress or postalCode
+    onFocus={() => {
+        setPostalCode(''); // Clear the postal code
+        setSelectedAddress(''); // Clear the selected address
+    }}
+    onChange={(e) => {
+        setPostalCode(e.target.value); // Update postalCode
+        setSelectedAddress(''); // Clear selectedAddress if the user starts typing
+    }}
+/>
+
                         {
                             Array.isArray(postCodeAddresses) && postCodeAddresses.length > 0 && <div className="absolute w-full bg-white top-12 border max-h-[20rem] overflow-y-auto">
                                 {
                                     postCodeAddresses?.map(item => {
                                         return <div
                                             onClick={() => {
-                                                postAddress(item?.address)
-                                                // setAddressData(prev => {
-                                                //     setPostCodeAddresses([])
-                                                //     // setPostalCode('')
-                                                //     const temp = prev?.filter(ad => ad?.address != item?.address) || []
-                                                //     return [...temp, { address: item?.address, postCode: postalCode }]
-
-                                                // })
-                                                setSavedOrSelectedAddress([item.address])
+                                                handleVerifyMiles(item)
+                                    
                                             }}
                                             className="px-6 py-2 hover:bg-black/10 cursor-pointer">{item?.address}</div>
                                     })
@@ -253,10 +290,9 @@ const Delivery = ({ step }) => {
                         }
                     </div>
                     {
-                        isUpdateAdress ? <form action={handleAddress} className="w-full mx-auto p-4 space-y-6 bg-white shadow-lg rounded-lg">
-
-
-                            <div>
+                        isUpdateAdress && !isGuestLoggedIn ?
+                         <form action={handleAddress} className="w-full mx-auto p-4 space-y-6 bg-white shadow-lg rounded-lg">
+  <div>
                                 <label className="block text-sm font-medium text-gray-700">Address</label>
                                 <input
                                     type="text"
@@ -305,7 +341,10 @@ const Delivery = ({ step }) => {
                                     Save
                                 </button>
                             </div>
-                        </form> : Array.isArray(addressData) && addressData.length > 0 && <div className="space-y-3">
+                        </form>
+                         :
+                         isGuestLoggedIn ? <></> :
+                           Array.isArray(addressData) && addressData.length > 0 && <div className="space-y-3">
                             <h1 className="">And Select From The List :</h1>
                             {
                                 addressData?.map((item, index) => {
@@ -364,12 +403,12 @@ const Delivery = ({ step }) => {
                             store you ordered from directly.
                         </p>
                         <p className="mb-2">Your order is being placed with:</p>
-                        <p className="font-bold">167-169 High Street, Watford, United Kingdom
+                        <p className="font-bold">91 Joel St, Pinner, Northwood HA6 1LW, UK
                             <br />
-                            pizzainno.com@gmail.com</p>
+                            Hothousenorthwood@gmail.com</p>
                         <p className="flex items-center mt-2">
                             <PhoneIcon className="mr-2" />
-                            +44 1923 318913
+                            01923510520
                         </p>
                     </div>
                     <button

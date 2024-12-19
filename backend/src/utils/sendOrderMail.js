@@ -38,8 +38,8 @@ export const sendOrderMail = async (email, orderId ,amount, date, paymentType,or
 
 
     let mailOptions = {
-        from: "pizzainno.com@gmail.com",
-        to: [email,"pizzainno.com@gmail.com"],
+        from: process.env.NODEMAILER_EMAIL,
+        to: [email,process.env.NODEMAILER_EMAIL],
         subject: "Your Pizza Inno Watford Order Confirmation",
         html: data,
       };

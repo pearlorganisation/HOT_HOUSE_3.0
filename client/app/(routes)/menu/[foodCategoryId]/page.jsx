@@ -8,28 +8,28 @@ export async function generateMetadata({ params }) {
   
   switch (category.toLowerCase()) {
     case "pizzas":
-      title = "Pizzas | Pizza Inno Watford | Order online now";
-      description = "Order delicious pizzas from Pizza Inno Watford in Watford. Try our wide variety of pizzas and enjoy unbeatable taste.";
+      title = "Pizzas | Hot House Pizza | Order online now";
+      description = "Order delicious pizzas from Hot House Pizza in Northwood. Try our wide variety of pizzas and enjoy unbeatable taste.";
       break;
     case "sides":
-      title = "Sides | Pizza Inno Watford | Order online now";
-      description = "Complement your meal with a wide range of sides from Pizza Inno Watford in Watford. Order online now!";
+      title = "Sides | Hot House Pizza | Order online now";
+      description = "Complement your meal with a wide range of sides from Hot House Pizza in Northwood. Order online now!";
       break;
     case "drinks":
-      title = "Drinks | Pizza Inno Watford | Order online now";
-      description = "Quench your thirst with our refreshing drinks at Pizza Inno Watford in Watford. Order online!";
+      title = "Drinks | Hot House Pizza | Order online now";
+      description = "Quench your thirst with our refreshing drinks at Hot House Pizza in Northwood. Order online!";
       break;
     case "desserts":
-      title = "Desserts | Pizza Inno Watford | Order online now";
-      description = "Indulge in our mouth-watering desserts at Pizza Inno Watford in Watford. Order now!";
+      title = "Desserts | Hot House Pizza | Order online now";
+      description = "Indulge in our mouth-watering desserts at Hot House Pizza in Northwood. Order now!";
       break;
     case "dips":
-      title = "Dips | Pizza Inno Watford | Order online now";
-      description = "Add extra flavor with our delicious dips from Pizza Inno Watford in Watford. Order online now!";
+      title = "Dips | Hot House Pizza | Order online now";
+      description = "Add extra flavor with our delicious dips from Hot House Pizza in Northwood. Order online now!";
       break;
     default:
-      title = "Food Category | Pizza Inno Watford | Order online now";
-      description = "Discover the best pizza takeaway in Watford at Pizza Inno Watford. Order now!";
+      title = "Food Category | Hot House Pizza | Order online now";
+      description = "Discover the best pizza takeaway in Northwood at Hot House Pizza. Order now!";
       break;
   }
 

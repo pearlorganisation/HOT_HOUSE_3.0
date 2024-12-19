@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userData: null,
   isUserLoggedIn: false,
+  isGuestLoggedIn: false,
   newPassword:"",
   forgetPasswordEmail:"",
 };
@@ -50,10 +51,22 @@ const authslice = createSlice({
     },
     userLogout: (state, action) => {
       localStorage.removeItem("userData");
+      state.isGuestLoggedIn= false;
+
       state.isUserLoggedIn = false;
       state.userData = null;
     },
+    guestLogin: (state, action) => {
+      state.isGuestLoggedIn = true;
+
+      state.userData = null;
+    },
+    oAuthLogin:(state,action)=>{
+      state.isUserLoggedIn = true,
+      state.userData= action.payload
+
+    }
   },
 });
-export const { getcredentials,addNewPassword, addUserData, userLogout , setForgetPasswordEmail } = authslice.actions;
+export const { getcredentials,addNewPassword, addUserData, userLogout , setForgetPasswordEmail,guestLogin,oAuthLogin } = authslice.actions;
 export default authslice.reducer;

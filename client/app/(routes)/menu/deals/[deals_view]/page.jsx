@@ -11,6 +11,7 @@ import PizzaCustomizationModal from "@/app/_components/Modals/PizzaCutomizationM
 import { ClockLoader } from "react-spinners";
 import DealPriceCard from "@/app/_components/TotalPriceCard/DealPriceCard";
 import Image from "next/image";
+import { forEach } from "lodash";
 
 async function getData(id) {
   try {
@@ -39,7 +40,7 @@ const Page = () => {
   
   const sizeDetailRef = useRef(null);
 
-
+  const [specialPizzaPrice,setSpecialPizzaPrice] = useState(0); 
 
 
 
@@ -55,10 +56,10 @@ const Page = () => {
   
   const pizzaDataIndex = useRef(null);
 
+  const [extraPrice ,setExtraPrice] = useState(0);
+   
 
-  useEffect(()=>{
-    console.log("Deal data pizza ",dealDataPizza);
-    },[dealDataPizza]);
+
   const handleOpeningModal = () => {
     if (modalRef.current) {
       modalRef.current.open();
@@ -68,9 +69,7 @@ const Page = () => {
 
 
 
-useEffect(()=>{
-  console.log("deal data pizza",dealDataPizza);
-},[dealDataPizza]);
+
 
 
   
@@ -83,7 +82,6 @@ useEffect(()=>{
       sizeDetailRef.current = dealViewData?.sizes.find(
         (el) => el._id === sizeId
       );
-      console.log(sizeDetailRef,"sdfdsf")
       pizzaDataIndex.current = 0; 
     }
   }, [dealViewData]);
@@ -105,11 +103,8 @@ useEffect(()=>{
       dealViewData &&
       submitData.every((item) => item !== null && item !== undefined) && (dealDataPizza.length === dealViewData.chooseItems.pizzas)
     ) {
-      console.log(submitData,"submitted data from pizzqaDeals");
 
-      const extraPrice = Number(
-        (dealDataPizza ? dealDataPizza.reduce((acc, currPizza) => acc + (currPizza.pizzaExtraToppingPrice || 0), 0) : 0)
-      ) + 0;
+
 
       
 
@@ -120,9 +115,10 @@ useEffect(()=>{
           size: sizeDetailRef.current.size,
           id:  dealViewData?._id + dealDataPizza.reduce((acc,currEle)=> acc + currEle.id,''),
           quantity: 1,
-          price : Number(extraPrice+sizeDetailRef.current.price).toFixed(2),
-          totalSum :Number(extraPrice+sizeDetailRef.current.price).toFixed(2),
-          dealsData:[...submitData]
+          price : Number(extraPrice+sizeDetailRef.current.price+Number(specialPizzaPrice)).toFixed(2),
+          totalSum :Number(extraPrice+sizeDetailRef.current.price+Number(specialPizzaPrice)).toFixed(2),
+          dealsData:[...submitData],
+          collectionOnlyDeal:dealViewData?.collectionOnlyDeal,
         }));
       router.push("/order/cart");
 
@@ -150,15 +146,38 @@ useEffect(()=>{
   const drinkCount = dealViewData?.chooseItems?.drinks || 0;
   const drinks = new Array(drinkCount).fill(null);
 
-  const extraPrice = dealDataPizza.reduce((acc, currVal) => {
-    return acc + (currVal?.pizzaExtraToppingPrice !== undefined ? currVal?.pizzaExtraToppingPrice : 0);
-  }, 0);
+  // const extraPrice = dealDataPizza.reduce((acc, currVal) => {
+  //   return acc + (currVal?.pizzaExtraToppingPrice !== undefined ? currVal?.pizzaExtraToppingPrice : 0);
+  // }, 0);
+  
 
+
+
+  useEffect(()=>{
+    
+    if (!dealDataPizza.every((el) => el === undefined)) {
+      const { totalPizzaPrice, totalSumSpecialPizzaPrice } = dealDataPizza.reduce(
+        (acc, el) => {
+          acc.totalPizzaPrice += el?.pizzaPriceExtra || 0;
+          acc.totalSumSpecialPizzaPrice += el?.extraSpecialPrice || 0;
+          return acc;
+        },
+        { totalPizzaPrice: 0, totalSumSpecialPizzaPrice: 0 }
+      );
+      setSpecialPizzaPrice((totalPizzaPrice - totalSumSpecialPizzaPrice).toFixed(2));
+   }
+    const currExtraPrice = dealDataPizza?.reduce((acc, currVal) => {
+      return acc + (currVal?.pizzaExtraToppingPrice !== undefined ? currVal?.pizzaExtraToppingPrice : 0);
+    }, 0)||0;
+
+  setExtraPrice(currExtraPrice);
+  console.log("im triggering !!");
+  },[dealDataPizza]);
   
 
   return (
     <>
-    <PizzaCustomizationModal  ref={modalRef} pizzaIndex = {pizzaDataIndex} pizzaData = {dealDataPizza} setViewButton={setViewButton}  setDealDataPizza={setDealDataPizza} />
+    <PizzaCustomizationModal  calledBy={""} ref={modalRef} pizzaIndex = {pizzaDataIndex} pizzaData = {dealDataPizza} setViewButton={setViewButton}  setDealDataPizza={setDealDataPizza} />
     <div className="">
       {dealViewData ? (
         <div>
@@ -283,6 +302,7 @@ useEffect(()=>{
                       )}      
                         <Select
                           placeholder={`Choose pizza ${index + 1}`}
+                          className="min-w-52 w-52"
                           key={index}
                           onChange={(e) => {
                             setDealDataPizza((prev) => {
@@ -290,6 +310,7 @@ useEffect(()=>{
                               temp[index] = e;
                               return temp;
                             });
+                            
                             console.log(e, "e");
                           }}
                           options={dealViewData.pizza.map((el) => ({
@@ -303,6 +324,8 @@ useEffect(()=>{
                             vegetarianToppingsName: el.vegetarianToppingsName,
                             meatToppingsName: el.meatToppingsName,
                             baseName: el.baseName,
+                            pizzaPriceExtra:el.priceSection?.find((el)=> el?.size?.name === sizeDetailRef?.current?.size)?.price||0,
+                            extraSpecialPrice:el.priceSection?.find((el)=> el?.size?.name === sizeDetailRef?.current?.size)?.size?.basePrice||0
                           }))}
                         />
                       </div>
@@ -375,12 +398,12 @@ useEffect(()=>{
               ADD TO CART
             </button>
           </div>
-        { !viewButton ? <DealPriceCard  dealPrice={sizeDetailRef?.current?.price || 0} extraPrice={extraPrice} />: ""}
+        { !viewButton ? <DealPriceCard specialPizzaPrice={specialPizzaPrice}  dealPrice={sizeDetailRef?.current?.price || 0} extraPrice={extraPrice} />: ""}
         </div>
       ) : (
         <div className="flex justify-center pt-[25vh] h-[85vh] ">
           {/* <ClockLoader color="#991b1b" size={100}/> */}
-          <Image src="/HOTPIZZALOGO.jpg" alt="Pizza Logo"  width={300} height={300} className="h-[10vh] w-[30vw]  object-contain" />
+          <Image src="/HOTPIZZALOGO.svg" alt="Pizza Logo"  width={300} height={300} className="h-[10vh] w-[30vw]  object-contain" />
           </div>
       )}
     </div>

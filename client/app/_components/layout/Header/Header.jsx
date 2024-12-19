@@ -2,19 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import { FaBagShopping } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import { CiUser } from "react-icons/ci";
 import { PiBagLight } from "react-icons/pi";
 import { RiRefreshFill } from "react-icons/ri";
-import logo from "../../../_assets/images/HOTPIZZALOGO.jpg";
+import logo from "../../../_assets/images/PizzaInnno_SVG.svg";
 import { categoryEnum } from "@/app/utils/utils";
 import { useAppSelector } from "@/app/lib/hooks";
 import { SiWhatsapp } from "react-icons/si";
 import { BiSolidPizza } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { getCustomizationDetails } from "@/app/lib/features/orderDetails/orderDetailsslice";
+import LogoutModal from "../../Modals/LogoutModal";
 
 async function getPizzaData() {
   try {
@@ -30,12 +31,20 @@ const Header = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isMounted, setIsMounted] = useState(false);
   const cart = useAppSelector((state) => state.cart.cartData);
-  const { userData, isUserLoggedIn } = useAppSelector((state) => state.auth);
+  const { userData, isUserLoggedIn ,isGuestLoggedIn} = useAppSelector((state) => state.auth);
 
   const [pizzaData, setPizzaData] = useState(null);
   const dispatch = useDispatch()
   const randomId = useId()
-
+  const modalRef = useRef(null);
+  function handleLogoutAccount() {
+    modalRef.current.open();
+  }
+  
+  const totalPrice = cart?.reduce((acc, item) => acc + Number(item?.totalSum), 0);
+  
+  
+  
   useEffect(() => {
     async function fetchData() {
       const pizzaData= await getPizzaData()
@@ -44,19 +53,17 @@ const Header = () => {
     fetchData();
     setIsMounted(true);
   }, []);
-
-  const totalPrice = cart?.reduce((acc, item) => acc + Number(item?.totalSum), 0);
-
+  
   if (!isMounted) {
     return null; // Render nothing until the component has mounted
   }
-
   return (
     <div className="bg-white  z-10 shadow-lg fixed top-0 w-full pt-2  md:pt-4 md:py-4">
+      <LogoutModal ref={modalRef} />
       {/* Mobile */}
       <div className="flex justify-between items-center mx-1 md:mx-4">
         <Link href="/" className="flex justify-center">
-        <Image src={logo} className="bg-white lg:hidden rounded-md" alt="logo" width={80} />
+          <Image src={logo} className="bg-white lg:hidden" alt="logo" width={40} />
         </Link>
         <ul className="lg:hidden flex gap-4 items-center">
           {isUserLoggedIn ? (
@@ -64,11 +71,13 @@ const Header = () => {
               <p className="flex items-center gap-2 text-green-950">
                 <FaUser size={20} className="text-slate-700" aria-label="User Profile" />
                 <span className="text-red-800 text-sm font-semibold tracking-wide">
-                  {userData?.firstName[0]}.{userData?.lastName}
+                  {userData?.firstName ? userData?.firstName[0] : "Error"}.{userData?.lastName}
                 </span>
               </p>
             </Link>
-          ) : (
+          ) : isGuestLoggedIn ? <li className="px-2 py-1 text-white font-semibold bg-red-800 rounded-md flex items-center text-xs">
+          <button  onClick={handleLogoutAccount}> Guest Account</button>
+        </li>  : (
             <li className="px-2 py-1 text-white font-semibold bg-red-800 rounded-md flex items-center text-xs">
               <Link href="/login">Login / Signup</Link>
             </li>
@@ -88,7 +97,7 @@ const Header = () => {
       {/* Desktop */}
       <div className="bg-white flex flex-col lg:flex-row justify-between lg:items-center lg:px-10">
         <Link href="/" className="hidden lg:flex lg:flex-col justify-center h-full">
-        <Image src={logo} className="bg-white shadow-md hidden lg:block rounded-md" alt="logo" width={100} height={80} />
+          <Image src={logo} className="bg-white hidden lg:block" alt="logo" width={80} height={80} />
         </Link>
         <ul className="flex lg:pt-0 flex-wrap items-center justify-around text-base sm:text-lg text-white font-semibold xl:gap-10">
           <Link href="/menu/deals">
@@ -121,10 +130,13 @@ const Header = () => {
             <Link href="/profile?tab=1" className="hidden lg:flex items-center gap-2 text-black">
               <CiUser size={25} aria-label="User Profile" />
               <span className="text-base text-red-800 hover:text-red-700 hover:font-bold tracking-wide">
-                {userData?.firstName[0]}.{userData?.lastName}
+              {userData?.firstName && userData?.lastName ? `${userData?.firstName[0]}.${userData?.lastName}` : 
+              userData?.firstName ? userData?.firstName : "No Name"}
               </span>
             </Link>
-          ) : (
+          ) : isGuestLoggedIn ? (<li className="hidden lg:flex px-2 font-normal hover:bg-white hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-md hover:text-red-800 text-white bg-red-800 items-center text-lg">
+              <button  onClick={handleLogoutAccount}> Guest Account</button>
+          </li>)  : (
             <li className="hidden lg:flex px-2 font-normal hover:bg-white hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-md hover:text-red-800 text-white bg-red-800 items-center text-lg">
               <Link href="/login">Login / Signup</Link>
             </li>
@@ -146,7 +158,7 @@ const Header = () => {
                    {    dispatch(
                         getCustomizationDetails({
                           name: "Create Your Own Pizza",
-                          img: "https://res.cloudinary.com/dx550y313/image/upload/v1730722551/HotHouse%20after%2025%20OCT/bcwaxu4kstgimyzlwdjl.jpg",
+                          img: "https://res.cloudinary.com/dx550y313/image/upload/v1729863237/HotHouse%20after%2025%20OCT/ngo69j5nii68d36x0n0x.png",
                           priceSection: pizzaData[0]?.priceSection,
                           id: randomId,
                           sauceName: [],
@@ -178,13 +190,13 @@ const Header = () => {
     <SiWhatsapp size={25}/>
     <span className="ml-2">Whatsapp</span>
   </a>
-  <a
+{ isUserLoggedIn && <a
     href="/profile?tab=3"
     className="flex items-center bg-red-800  text-white py-2 px-4 text-base rounded-b-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-white hover:text-red-800"
   >
     <RiRefreshFill size={30} />
     <span className="ml-2">Reorder Now</span>
-  </a>
+  </a>}
   </div>
 </div>
 
@@ -195,7 +207,7 @@ const Header = () => {
                    {    dispatch(
                         getCustomizationDetails({
                           name: "Create Your Own Pizza",
-                          img: "https://res.cloudinary.com/dx550y313/image/upload/v1730722551/HotHouse%20after%2025%20OCT/bcwaxu4kstgimyzlwdjl.jpg",
+                          img: "https://res.cloudinary.com/dx550y313/image/upload/v1729863237/HotHouse%20after%2025%20OCT/ngo69j5nii68d36x0n0x.png",
                           priceSection: pizzaData[0]?.priceSection,
                           id: randomId,
                           sauceName: [],
@@ -227,13 +239,13 @@ const Header = () => {
           <SiWhatsapp size={22}/>
           <span className="pl-2 text-sm">Whatsapp</span>
         </a>
-        <a
+       { isUserLoggedIn && <a
           href="/profile?tab=3"
           className="w-full border-r border-r-white justify-center inline-flex items-center bg-red-800 text-white py-2 px-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-white hover:text-red-800"
         >
           <RiRefreshFill size={25} />
           <span className="pl-2 text-sm">Reorder Now</span>
-        </a>
+        </a>}
       </div>
 
     </div>
