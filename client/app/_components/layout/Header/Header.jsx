@@ -184,7 +184,7 @@ const Header = () => {
   </div>
   <div className="flex gap-2"> 
    <a
-    href="https://wa.me/+447469367116" target="_blank" rel="noopener noreferrer"
+    href="https://wa.me/+44776108542" target="_blank" rel="noopener noreferrer"
     className="flex items-center bg-green-800  text-white py-2 px-4 text-base rounded-b-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-white hover:text-green-800"
   >
     <SiWhatsapp size={25}/>
@@ -233,7 +233,7 @@ const Header = () => {
       <div className="md:hidden flex justify-center">
         
         <a
-          href="https://wa.me/+447469367116" target="_blank" rel="noopener noreferrer"
+          href="https://wa.me/+44776108542" target="_blank" rel="noopener noreferrer"
           className="w-full border-r border-r-white justify-center inline-flex items-center bg-green-800 text-white py-2 px-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-white hover:text-red-800"
         >
           <SiWhatsapp size={22}/>

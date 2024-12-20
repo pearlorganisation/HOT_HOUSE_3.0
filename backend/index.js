@@ -122,7 +122,7 @@ app.use(socialOAuth.session());
 app.all(["/", "/api", "/api/v1"], (req, res, next) => {
   return res.status(200).json({
     success: true,
-    message: "Welcome to Hot House",
+    message: "Welcome to Pizzainno",
   });
 });
 

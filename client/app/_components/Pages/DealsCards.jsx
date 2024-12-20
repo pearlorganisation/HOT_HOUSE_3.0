@@ -46,17 +46,17 @@ const DealsCards = ({ data, path }) => {
               {data.title} 
             </h2>
             {/* <p>{data?.sizes.length === 1 ? data.sizes[0].size </p> */}
-            <p className="text-sm font-semibold text-gray-500 mb-1">
-              {combineItems()}
-              {data?.defaultItems.length > 0 && ", "}
-              {data?.defaultItems.map((item, index) => (
-                <React.Fragment key={index}>
-                  {index === data.defaultItems.length - 1
-                    ? item.replace(/ /g, "\u00A0")
-                    : `${item.replace(/ /g, "\u00A0")}, `}
-                </React.Fragment>
-              ))}
-            </p>
+        <p className="text-sm font-semibold text-gray-500 mb-1 break-words">
+  {combineItems()}
+  {data?.defaultItems.length > 0 && ", "}
+  {data?.defaultItems.map((item, index) => (
+    <React.Fragment key={index}>
+      {index === data.defaultItems.length - 1
+        ? item.replace(/ /g, "\u00A0").replace(/\//g, "/\u200B")
+        : `${item.replace(/ /g, "\u00A0").replace(/\//g, "/\u200B")}, `}
+    </React.Fragment>
+  ))}
+</p>
           </div>
         </div>
       </div>

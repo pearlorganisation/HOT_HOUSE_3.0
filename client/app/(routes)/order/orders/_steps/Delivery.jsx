@@ -403,12 +403,12 @@ const generateDayTimeIntervals = () => {
                             store you ordered from directly.
                         </p>
                         <p className="mb-2">Your order is being placed with:</p>
-                        <p className="font-bold">91 Joel St, Pinner, Northwood HA6 1LW, UK
+                        <p className="font-bold">167-169 The Parade High St, Watford WD17 1NJ, United Kingdom
                             <br />
-                            Hothousenorthwood@gmail.com</p>
+                            Info@pizzainno.com</p>
                         <p className="flex items-center mt-2">
                             <PhoneIcon className="mr-2" />
-                            01923510520
+                            +44 1923 318913
                         </p>
                     </div>
                     <button

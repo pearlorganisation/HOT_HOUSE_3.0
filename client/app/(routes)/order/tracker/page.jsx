@@ -44,7 +44,7 @@ const page = () => {
     <section className=" py-4 md:py-0 md:pb-10 rounded-2xl">
       <div className="flex flex-col gap-8 justify-center items-center">
         <h1 className=" font-bold text-xl text-center text-green-800">
-          THANKS , YOUR ORDER IS BEING DEALT WITH BY HOT HOUSE 
+          THANKS , YOUR ORDER IS BEING DEALT WITH BY PIZZAINNO WATFORD
         </h1>
 
         <div
@@ -55,7 +55,7 @@ const page = () => {
 
           <h1 className="mx-1 my-5 text-center font-semibold text-red-800">
             {" "}
-            PIZZA DELIVERY AND TAKEAWAY DEALS IN HOTHOUSE{" "}
+            PIZZA DELIVERY AND TAKEAWAY DEALS IN PIZZAINNO WATFORD{" "}
           </h1>
 
           <div className="grid md:grid-cols-2 justify-center gap-4">
@@ -96,11 +96,11 @@ const page = () => {
               <div className=" md:flex-none flex flex-col  justify-center items-center ">
 
                 <p>
-                1 Joel St, Pinner, Northwood HA6 1LW, UK
+                167-169 The Parade High St, Watford WD17 1NJ, United Kingdom
 <br/>
-Hothousenorthwood@gmail.com</p>
+Info@pizzainno.com</p>
                 <p className=" flex items-center gap-3">
-                  <BsFillTelephoneOutboundFill /> <p>01923510520</p>
+                  <BsFillTelephoneOutboundFill /> <p>+44 1923 318913</p>
                 </p>
               </div>
             </div>
