@@ -8,8 +8,8 @@ import Script from "next/script";
 
 
 export const metadata = {
-  title: 'Pizza Inno Watford | Best Pizza in Watford | Order online now',
-  description: 'Discover the best pizza takeaway in Watford at Pizza Inno, Convenient online ordering, quick service, and unbeatable taste. Order now',
+  title: 'Pizzainno Watford | Best Pizza in Watford | Order online now',
+  description: 'Discover the best pizza takeaway in Watford at Pizzainno, Convenient online ordering, quick service, and unbeatable taste. Order now',
 }
 
 

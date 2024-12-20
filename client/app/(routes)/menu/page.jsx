@@ -2,7 +2,7 @@ import HomePage from "@/app/_components/HomePage/HomePage";
 import React from "react";
 
 export const metadata = {
-  title: "Hot House Northwood Pizza",
+  title: "Pizzainno Watford",
   description: "Pizza Website"
 };
 
