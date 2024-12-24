@@ -153,7 +153,6 @@ export const updateCompleteOrder = asyncErrorHandler(async (req, res, next) => {
     const orderNumber = `${datePart}${incrementedCount}`;
 
     const {amount,customer,newData} = req.body
-    console.log(req?.body,"ONLINE ORDER NOT PAYMENT SUCCESSFUL!!!!")
 
     const generateToken = await fetch("https://accounts.vivapayments.com/connect/token", {
     // const generateToken = await fetch("https://demo-accounts.vivapayments.com/connect/token", {
