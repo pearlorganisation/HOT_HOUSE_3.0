@@ -96,7 +96,7 @@ const generateDayTimeIntervals = () => {
         const addIntervalsForDay = (date) => {
             const day = daysOfWeek[date.getDay()];
             const start = new Date(date);
-            start.setHours(11, 0, 0, 0); // Set start time to 11 AM
+            start.setHours(12, 0, 0, 0); // Set start time to 12 PM
             const end = new Date(date);
             end.setHours(23, 0, 0, 0); // Set end time to 11 PM
 
