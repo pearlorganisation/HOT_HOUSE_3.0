@@ -60,7 +60,7 @@ sterling (£).
 or traffic conditions may occasionally cause delays. Check with your local store for updated
 delivery times.
         </p>
-        <p className="md:p-2 p-2 px-5 md:px-0">Products</p>
+        <p className="font-semibold  md:p-5 p-2 px-5 md:px-0">Products</p>
         <p className="md:p-2 p-2 px-5 md:px-0">
         Side orders are subject to availability. Alternatives may be offered for out-of-stock items.
         </p>
