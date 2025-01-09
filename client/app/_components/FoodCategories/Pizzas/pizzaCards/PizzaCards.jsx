@@ -80,7 +80,7 @@ const PizzaCards = ({ data, idx }) => {
       </div>
       <div className=" h-full px-2">
         <div className="mt-3">
-          <h2 className="text-xl font-semibold mb-1 ">{data?.pizzaName}  <div className="text-red-800">(20% Off on Collection)</div></h2>
+          <h2 className="text-xl font-semibold mb-1 ">{data?.pizzaName}  <div className="text-red-800">(30% Off on Collection)</div></h2>
           <p className="text-sm font-semibold text-gray-500 mb-4 whitespace-wrap overflow-hidden ">
             {combineNames()}
           </p>
@@ -147,7 +147,7 @@ const PizzaCards = ({ data, idx }) => {
                       quantity: 1,
                       price: Number(selectedLabel.split("-")[1]),
                       totalSum: Number(selectedLabel.split("-")[1]),
-                      discount: (Number(selectedLabel.split("-")[1]) * 0.2).toFixed(2),
+                      discount: (Number(selectedLabel.split("-")[1]) * 0.3).toFixed(2),
                     })
                   );
               }}

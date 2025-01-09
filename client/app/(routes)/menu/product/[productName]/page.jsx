@@ -180,7 +180,7 @@ const Product = () => {
 
     dispatch(addToCart({
       name: customizationData?.name, img: customizationData?.img, id: uniqueId, quantity: 1, price: allToppings?.totalPrice, totalSum: allToppings?.totalPrice,
-      discount:(allToppings?.totalPrice * 0.2).toFixed(2),
+      discount:(allToppings?.totalPrice * 0.3).toFixed(2),
       allToppings: allToppings
     }))
 

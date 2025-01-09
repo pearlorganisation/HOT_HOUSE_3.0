@@ -233,7 +233,7 @@ if(totalPrice <20 && totalPrice >=10 || isDealIncluded ){
                          
                           <span className="text-sm"> x {data?.quantity}</span>
                         </div>
-                        {order?.orderType === 'collection' && data?.discount  &&   <div className="text-green-800">20% Discount on Collection</div>}
+                        {order?.orderType === 'collection' && data?.discount  &&   <div className="text-green-800">30% Discount on Collection</div>}
                       
                         </div>
                         </div>
