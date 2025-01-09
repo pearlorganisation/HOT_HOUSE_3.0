@@ -141,7 +141,7 @@ export default function OrderViewModal ({viewData,setModal}) {
                           <div className="text-sm text-red-800"> Quantity : {item?.quantity}</div>
                          
                         </div>
-                        {viewData?.orderType === 'collection' && item?.discount &&   <div className="text-green-800 font-semibold">20% Discount on Collection</div>}
+                        {viewData?.orderType === 'collection' && item?.discount &&   <div className="text-green-800 font-semibold">30% Discount on Collection</div>}
                       
                         </div>
                     {item?.dealsData && ( <div className="text-base border rounded-md px-2 py-2 mt-2 text-gray-600"> {

@@ -137,7 +137,7 @@ const ReceiptModal = ({ isReceiptVisible, setIsReceiptVisible }) => {
                          
                           <span className="text-sm"> x {data?.quantity}</span>
                         </div>
-                        {orderData?.orderType === 'collection' && data?.discount &&   <div className="text-green-800">20% Discount on Collection</div>}
+                        {orderData?.orderType === 'collection' && data?.discount &&   <div className="text-green-800">30% Discount on Collection</div>}
                       
                         </div>
                         </div>

@@ -167,7 +167,7 @@ const page = () => {
         ).toFixed(2),
         dealsData: submitData,
         discount: Number(
-          (extraPrice + basePriceForPizza + totalBasePrice) * 0.2
+          (extraPrice + basePriceForPizza + totalBasePrice + 1) * 0.3
         ).toFixed(2),
       })
     );
