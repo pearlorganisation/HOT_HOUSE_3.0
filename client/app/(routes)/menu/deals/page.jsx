@@ -1,8 +1,10 @@
 import Deals from "./Deals";
 
 export const metadata = {
-  title: 'Top Pizza Deals | Pizzainno Watford | Order online now',
-  description: 'Discover the best pizza takeaway in Watford at Pizzainno , Convenient online ordering, quick service, and unbeatable taste. Order now',
+  title: 'Pizza Deals Watford | Exclusive Offers at PizzaInno',
+  description: 'Save big on freshly made pizzas with PizzaInno’s deals in Watford. Enjoy special discounts on your favorites. Order online today!"',
+  alternates:{
+    canonical: `https://www.pizzainno.com/menu/deals`,  }
 }
 
 const page = () => {
