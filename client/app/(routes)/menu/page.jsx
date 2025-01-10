@@ -2,8 +2,8 @@ import HomePage from "@/app/_components/HomePage/HomePage";
 import React from "react";
 
 export const metadata = {
-  title: "Pizzainno Watford",
-  description: "Pizza Website"
+  title: "Order Freshly Made Pizza Online in Watford – Customize Your Perfect Pie",
+  description: "Discover the best Watford pizza deals online! Enjoy freshly made pizzas tailored to your taste. Order now and savor your customized pizza experience."
 };
 
 
