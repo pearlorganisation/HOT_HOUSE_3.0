@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { BsFillTelephoneOutboundFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import Script from "next/script";
 
 const page = () => {
 
@@ -41,6 +42,16 @@ const page = () => {
     }, []);
 
   return (
+    <>
+
+    <Script >
+    {`
+  gtag('event', 'conversion', {
+      'send_to': 'AW-16577048939/9s2XCNbW7oIaEOvixuA9',
+      'transaction_id': ''
+  });
+    `}
+  </Script>
     <section className=" py-4 md:py-0 md:pb-10 rounded-2xl">
       <div className="flex flex-col gap-8 justify-center items-center">
         <h1 className=" font-bold text-xl text-center text-green-800">
@@ -108,6 +119,7 @@ Info@pizzainno.com</p>
         </div>
       </div>
     </section>
+    </>
   );
 };
 

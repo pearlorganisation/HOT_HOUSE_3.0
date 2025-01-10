@@ -8,24 +8,24 @@ export async function generateMetadata({ params }) {
   
   switch (category.toLowerCase()) {
     case "pizzas":
-      title = "Pizzas |Pizzainno Watford | Order online now";
-      description = "Order delicious pizzas from Pizzainno in Watford. Try our wide variety of pizzas and enjoy unbeatable taste.";
+      title = "Customized Pizza in Watford | Online Orders";
+      description = "Order personalized pizza with your favorite toppings in Watford. Quick online ordering and delivery!";
       break;
     case "sides":
-      title = "Sides |Pizzainno Watford | Order online now";
-      description = "Complement your meal with a wide range of sides from Pizzainno in Watford. Order online now!";
+      title = "Delicious Sides in Watford | Pizza Sides & More";
+      description = "Complete your meal with tasty sides in Watford. From garlic bread to salads, explore our selection of sides and add them to your pizza order for a perfect meal.";
       break;
     case "drinks":
-      title = "Drinks |Pizzainno Watford | Order online now";
-      description = "Quench your thirst with our refreshing drinks at Pizzainno  in Watford. Order online!";
+      title = "Refreshing Drinks in Watford | Soft Drinks & More";
+      description = "Quench your thirst with a variety of refreshing drinks in Watford. Pair your pizza with soft drinks, juices, and more for a perfect meal combo!";
       break;
     case "desserts":
-      title = "Desserts |Pizzainno Watford | Order online now";
-      description = "Indulge in our mouth-watering desserts at Pizzainno  in Watford. Order now!";
+      title = "Delicious Desserts in Watford | Sweet Treats & More";
+      description = "Indulge in mouthwatering desserts in Watford. From chocolate lava cake to cookies, satisfy your sweet tooth with our perfect dessert options after your pizza.";
       break;
     case "dips":
-      title = "Dips |Pizzainno Watford | Order online now";
-      description = "Add extra flavor with our delicious dips from Pizzainno  in Watford. Order online now!";
+      title = "Tasty Dips in Watford | Perfect Pairings for Your Pizza";
+      description = "Enhance your pizza experience with a variety of flavorful dips in Watford. From ranch to garlic butter, find the perfect dip to complement your meal!";
       break;
     default:
       title = "Food Category |Pizzainno Watford | Order online now";
