@@ -1,4 +1,4 @@
-import HalfAndHalfPizza from "./halfAndHalfPizza";
+import HalfAndHalfPizza from "./HalfAndHalfPizza";
 
 
 export const metadata = {

@@ -1,4 +1,3 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/layout/Header/Header";
 import Footer from "./_components/layout/Footer/Footer";
@@ -12,11 +11,6 @@ import Script from "next/script";
 
 
 export default function RootLayout({ children}) {
-  const baseURL = "https://www.pizzainno.com"; // Replace with your website's base URL
-  // const pathname = 
-  // const canonicalURL = `${baseURL}${pathname}`;
-
-  // console.log("first",params);
   
   return (
     <html lang="en">
@@ -26,7 +20,7 @@ export default function RootLayout({ children}) {
     <link rel="icon" type="image/svg+xml" href="/PizzaInno_Icon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="Bz01Gv2fFGRJUq4xSR8-LxGv4YKazMAhIdQTLNadTjQ" />
-    <link rel="canonical" href={"httcanonicalURL"} />
+    <link rel="canonical" href={"www.pizzainno.com"} />
   </head>
 
       {/* Google Analytics Script */}
