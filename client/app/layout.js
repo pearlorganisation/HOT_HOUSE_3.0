@@ -5,19 +5,18 @@ import Footer from "./_components/layout/Footer/Footer";
 import StoreProvider from "./StoreProvider";
 import { Toaster } from "sonner";
 import Script from "next/script";
-import { usePathname } from "next/navigation";
 
 
-export const metadata = {
-  title: 'Order Freshly Made Pizza Online in Watford – Customize Your Perfect Pie',
-  description: 'Discover the best Watford pizza deals online! Enjoy freshly made pizzas tailored to your taste. Order now and savor your customized pizza experience.',
-}
 
 
-export default function RootLayout({ children }) {
+
+
+export default function RootLayout({ children}) {
   const baseURL = "https://www.pizzainno.com"; // Replace with your website's base URL
-  const pathname = usePathname();
-  const canonicalURL = `${baseURL}${pathname}`;
+  // const pathname = 
+  // const canonicalURL = `${baseURL}${pathname}`;
+
+  // console.log("first",params);
   
   return (
     <html lang="en">
@@ -27,7 +26,7 @@ export default function RootLayout({ children }) {
     <link rel="icon" type="image/svg+xml" href="/PizzaInno_Icon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="Bz01Gv2fFGRJUq4xSR8-LxGv4YKazMAhIdQTLNadTjQ" />
-    <link rel="canonical" href={canonicalURL} />
+    <link rel="canonical" href={"httcanonicalURL"} />
   </head>
 
       {/* Google Analytics Script */}

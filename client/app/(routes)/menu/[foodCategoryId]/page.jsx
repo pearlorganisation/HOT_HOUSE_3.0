@@ -36,6 +36,10 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
+    alternates: {
+      canonical: `https://www.pizzainno.com/menu/${params.foodCategoryId}`,
+      
+    }
   };
 }
 
