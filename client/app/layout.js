@@ -39,6 +39,19 @@ export default function RootLayout({ children}) {
           `}
         </Script>
 
+{/* Google Ads Conversion Script */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16577048939"/>
+
+<Script id="google-analytics">
+  {`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'AW-16577048939');
+  `}
+</Script>
+
         <Script id="google-tag-event">
   {`
   gtag('event', 'ads_conversion_Shopping_Cart_2', {

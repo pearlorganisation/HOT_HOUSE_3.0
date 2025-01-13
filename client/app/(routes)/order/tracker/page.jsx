@@ -19,8 +19,6 @@ const page = () => {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <link rel="canonical" href={metadata.alternates.canonical} />
-      </Head>
-
       {/* Add script to the head */}
       <Script
         id="google-conversion-tracking"
@@ -33,6 +31,8 @@ const page = () => {
           });
         `}
       </Script>
+      </Head>
+
 
       <div>
         <Tracker />
