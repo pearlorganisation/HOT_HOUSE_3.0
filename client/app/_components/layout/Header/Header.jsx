@@ -241,7 +241,7 @@ const Header = () => {
           <span className="pl-2 text-sm">Whatsapp</span>
         </a>
         <a
-          href="https://wa.me/+44776108542" target="_blank" rel="noopener noreferrer"
+          href="tel:+441923318913" target="_blank" rel="noopener noreferrer"
           className="w-full border-r border-r-white justify-center inline-flex items-center bg-yellow-600 text-white py-2  shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-white hover:text-red-800"
         >
           <IoCallOutline  size={20}/>
