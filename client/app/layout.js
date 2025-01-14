@@ -6,25 +6,18 @@ import { Toaster } from "sonner";
 import Script from "next/script";
 
 
-export const metadata = {
-  title: 'Order Freshly Made Pizza Online in Watford – Customize Your Perfect Pie',
-  description: 'Discover the best Watford pizza deals online! Enjoy freshly made pizzas tailored to your taste. Order now and savor your customized pizza experience.',
-}
-
-
-
 export default function RootLayout({ children}) {
   
   return (
     <html lang="en">
   
-      <head>
+    <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/PizzaInno_Icon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="Bz01Gv2fFGRJUq4xSR8-LxGv4YKazMAhIdQTLNadTjQ" />
-    <link rel="canonical" href={"https://www.pizzainno.com"} />
-  </head>
+
+    </head>
 
       {/* Google Analytics Script */}
       <Script async src="https://www.googletagmanager.com/gtag/js?id=G-0EQFCMDCVK"/>
