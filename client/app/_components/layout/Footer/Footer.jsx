@@ -37,7 +37,7 @@ const Footer = ({ pizzaData, randomId, dispatch, getCustomizationDetails }) => {
             </h1>
             <div className="flex gap-4 justify-center md:justify-start">
               <a
-                href="https://www.facebook.com/pizzainnowatford/"
+                href="https://www.facebook.com/Pizzainnolondon/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:scale-110"

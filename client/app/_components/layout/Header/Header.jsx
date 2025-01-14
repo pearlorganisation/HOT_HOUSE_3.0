@@ -16,6 +16,7 @@ import { BiSolidPizza } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { getCustomizationDetails } from "@/app/lib/features/orderDetails/orderDetailsslice";
 import LogoutModal from "../../Modals/LogoutModal";
+import { IoCallOutline } from "react-icons/io5";
 
 async function getPizzaData() {
   try {
@@ -234,17 +235,24 @@ const Header = () => {
         
         <a
           href="https://wa.me/+44776108542" target="_blank" rel="noopener noreferrer"
-          className="w-full border-r border-r-white justify-center inline-flex items-center bg-green-800 text-white py-2 px-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-white hover:text-red-800"
+          className="w-full border-r border-r-white justify-center inline-flex items-center bg-green-800 text-white py-2 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-white hover:text-red-800"
         >
-          <SiWhatsapp size={22}/>
+          <SiWhatsapp size={18}/>
           <span className="pl-2 text-sm">Whatsapp</span>
+        </a>
+        <a
+          href="https://wa.me/+44776108542" target="_blank" rel="noopener noreferrer"
+          className="w-full border-r border-r-white justify-center inline-flex items-center bg-yellow-600 text-white py-2  shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-white hover:text-red-800"
+        >
+          <IoCallOutline  size={20}/>
+          <span className="pl-2 text-sm">Call Now</span>
         </a>
        { isUserLoggedIn && <a
           href="/profile?tab=3"
-          className="w-full border-r border-r-white justify-center inline-flex items-center bg-red-800 text-white py-2 px-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-white hover:text-red-800"
+          className="w-full border-r border-r-white justify-center inline-flex items-center bg-red-800 text-white py-2 shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:bg-white hover:text-red-800"
         >
-          <RiRefreshFill size={25} />
-          <span className="pl-2 text-sm">Reorder Now</span>
+          <RiRefreshFill size={20} />
+          <span className="pl-1 text-sm">Reorder Now</span>
         </a>}
       </div>
 
