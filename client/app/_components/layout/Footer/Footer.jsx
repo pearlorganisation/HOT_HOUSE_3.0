@@ -25,16 +25,16 @@ const Footer = ({ pizzaData, randomId, dispatch, getCustomizationDetails }) => {
 
           {/* Column 2: Policies */}
           <div className="w-full md:w-1/3 flex flex-col items-center md:items-start">
-            <h1 className="font-bold text-lg mb-4 text-center md:text-left">POLICIES</h1>
+            <h3 className="font-bold text-lg mb-4 text-center md:text-left">POLICIES</h3>
             <p className="hover:text-yellow-500 text-sm">
               <Link href="/termsAndConditions">Terms & Conditions</Link>
             </p>
             <p className="hover:text-yellow-500 text-sm">
               <Link href="/refundPolicy">Refund Policy</Link>
             </p>
-            <h1 className="font-bold text-lg mt-4 mb-2 text-center md:text-left">
+            <h3 className="font-bold text-lg mt-4 mb-2 text-center md:text-left">
               Follow Us on Social Media
-            </h1>
+            </h3>
             <div className="flex gap-4 justify-center md:justify-start">
               <a
                 href="https://www.facebook.com/Pizzainnolondon/"
@@ -65,7 +65,7 @@ const Footer = ({ pizzaData, randomId, dispatch, getCustomizationDetails }) => {
 
           {/* Column 3: Contact */}
           <div className="w-full md:w-1/3 flex flex-col items-center md:items-start mt-4">
-  <h1 className="font-bold text-lg mb-4 text-center md:text-left">CONTACT US</h1>
+  <h3 className="font-bold text-lg mb-4 text-center md:text-left">CONTACT US</h3>
   <p className="flex gap-2 items-center md:items-start text-center md:text-left mb-2">
     <FaStore className="mr-2 md:mr-0" size={20} />
     <span className="block md:inline">
