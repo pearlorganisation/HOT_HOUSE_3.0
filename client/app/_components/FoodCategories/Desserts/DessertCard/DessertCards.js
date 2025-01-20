@@ -19,7 +19,7 @@ const DessertCards = ({ data, idx }) => {
         className="rounded-t-lg w-full object-contain h-52"
       />
      
-        <h2 className="text-lg text-gray-800 font-semibold px-2 py-3">{data?.dessertName}</h2>
+        <h3 className="text-lg text-gray-800 font-semibold px-2 py-3">{data?.dessertName}</h3>
         <div>
           <select
             onChange={(Event) => {
