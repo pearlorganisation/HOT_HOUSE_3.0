@@ -20,7 +20,7 @@ const SidesCards = ({ data, dummyData, idx }) => {
         alt="Card Image"
         className="rounded-t-md w-full h-44 object-cover"
       />
-        <h2 className="text-lg font-semibold text-gray-800 px-2 py-3">{data?.sideName}</h2>
+        <h3 className="text-lg font-semibold text-gray-800 px-2 py-3">{data?.sideName}</h3>
         <div>
           <select
             onChange={(Event) => {
@@ -58,13 +58,7 @@ const SidesCards = ({ data, dummyData, idx }) => {
             </button>
           </div>
         </div>
-        {/* <p
-          className={`text-red-600 font-bold ${
-            isAddClicked && !selectedData ? "block" : "hidden"
-          } `}
-        >
-          please select size first
-        </p> */}
+
   
       
         </div>
