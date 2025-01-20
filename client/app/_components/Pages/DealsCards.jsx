@@ -23,6 +23,18 @@ const DealsCards = ({ data, path }) => {
     return items.join(", ");
   };
 
+  const alt = `${combineItems()}${
+    data?.defaultItems?.length > 0
+      ? `, ${data.defaultItems
+          .map((item) =>
+            item.replace(/\//g, "/\u200B") // Only replace slashes, leave spaces as regular spaces
+          )
+          .join(", ")}`
+      : ""
+  }`;
+  
+
+
   return (
     <div className="flex flex-col justify-between bg-white shadow-sm rounded-md max-w-xs w-full newshadow ">
       <div>
@@ -35,7 +47,7 @@ const DealsCards = ({ data, path }) => {
         >
           <img
             src={data.banner}
-            alt="Card Image"
+            alt={alt}
             className="rounded-t-md w-full object-cover"
           />
         </Link>
@@ -47,14 +59,14 @@ const DealsCards = ({ data, path }) => {
             </h2>
             {/* <p>{data?.sizes.length === 1 ? data.sizes[0].size </p> */}
         <p className="text-sm font-semibold text-gray-500 mb-1 break-words">
-  {combineItems()}
-  {data?.defaultItems.length > 0 && ", "}
-  {data?.defaultItems.map((item, index) => (
-    <React.Fragment key={index}>
-      {index === data.defaultItems.length - 1
-        ? item.replace(/ /g, "\u00A0").replace(/\//g, "/\u200B")
-        : `${item.replace(/ /g, "\u00A0").replace(/\//g, "/\u200B")}, `}
-    </React.Fragment>
+    {combineItems()}
+    {data?.defaultItems.length > 0 && ", "}
+    {data?.defaultItems.map((item, index) => (
+      <React.Fragment key={index}>
+        {index === data.defaultItems.length - 1
+          ? item.replace(/ /g, "\u00A0").replace(/\//g, "/\u200B")
+          : `${item.replace(/ /g, "\u00A0").replace(/\//g, "/\u200B")}, `}
+      </React.Fragment>
   ))}
 </p>
           </div>
