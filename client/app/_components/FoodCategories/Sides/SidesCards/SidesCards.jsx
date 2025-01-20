@@ -17,7 +17,7 @@ const SidesCards = ({ data, dummyData, idx }) => {
     >
       <img
         src={data?.banner}
-        alt="Card Image"
+        alt={data?.sideName}
         className="rounded-t-md w-full h-44 object-cover"
       />
         <h3 className="text-lg font-semibold text-gray-800 px-2 py-3">{data?.sideName}</h3>

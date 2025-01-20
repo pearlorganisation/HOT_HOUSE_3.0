@@ -64,7 +64,7 @@ const Header = () => {
       {/* Mobile */}
       <div className="flex justify-between items-center mx-1 md:mx-4">
         <Link href="/" className="flex justify-center">
-          <Image src={logo} className="bg-white lg:hidden" alt="logo" width={40} />
+          <Image src={logo} className="bg-white lg:hidden" alt={"Pizzainno"} width={40} />
         </Link>
         <ul className="lg:hidden flex gap-4 items-center">
           {isUserLoggedIn ? (
@@ -98,7 +98,7 @@ const Header = () => {
       {/* Desktop */}
       <div className="bg-white flex flex-col lg:flex-row justify-between lg:items-center lg:px-10">
         <Link href="/" className="hidden lg:flex lg:flex-col justify-center h-full">
-          <Image src={logo} className="bg-white hidden lg:block" alt="logo" width={80} height={80} />
+          <Image src={logo} className="bg-white hidden lg:block" alt="Pizzainno" width={80} height={80} />
         </Link>
         <ul className="flex lg:pt-0 flex-wrap items-center justify-around text-base sm:text-lg text-white font-semibold xl:gap-10">
           <Link href="/menu/deals">
@@ -159,7 +159,7 @@ const Header = () => {
                    {    dispatch(
                         getCustomizationDetails({
                           name: "Create Your Own Pizza",
-                          img: "https://res.cloudinary.com/dx550y313/image/upload/v1729863237/HotHouse%20after%2025%20OCT/ngo69j5nii68d36x0n0x.png",
+                          img: "https://www.pizzainno.com/_next/static/media/PizzaInnno_SVG.bc710c5a.svg",
                           priceSection: pizzaData[0]?.priceSection,
                           id: randomId,
                           sauceName: [],
@@ -208,7 +208,7 @@ const Header = () => {
                    {    dispatch(
                         getCustomizationDetails({
                           name: "Create Your Own Pizza",
-                          img: "https://res.cloudinary.com/dx550y313/image/upload/v1729863237/HotHouse%20after%2025%20OCT/ngo69j5nii68d36x0n0x.png",
+                          img: "https://www.pizzainno.com/_next/static/media/PizzaInnno_SVG.bc710c5a.svg",
                           priceSection: pizzaData[0]?.priceSection,
                           id: randomId,
                           sauceName: [],

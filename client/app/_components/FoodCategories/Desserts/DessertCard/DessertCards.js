@@ -15,7 +15,7 @@ const DessertCards = ({ data, idx }) => {
     >
       <img
         src={data?.banner}
-        alt="Card Image"
+        alt={data?.dessertName}
         className="rounded-t-lg w-full object-contain h-52"
       />
      
@@ -57,14 +57,7 @@ const DessertCards = ({ data, idx }) => {
             </button>
           </div>
         </div>
-        {/* <p
-          className={`text-red-600 font-bold ${
-            isAddClicked && !selectedData ? "block" : "hidden"
-          } `}
-        >
-          please select size first
-        </p> */}
- 
+
  
       </div>
 

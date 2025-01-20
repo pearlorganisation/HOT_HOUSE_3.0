@@ -34,16 +34,6 @@ export default function DrinksCard({ data }) {
         })
       );
 
-      console.log({
-        id: data?.id + selectedOption?.value,
-        name: selectedOption?.name,
-        img: selectedOption?.img,
-        size: `${selectedOption?.size}"-${selectedOption.price}`,
-        quantity: 1,
-        price: Number(selectedOption.price * 1).toFixed(2),
-        totalSum: Number(selectedOption.price * 1).toFixed(2),
-      });
-      console.log("selected ", selectedOption);
     }
   }
 
@@ -52,7 +42,7 @@ export default function DrinksCard({ data }) {
       <div className="bg-white shadow-md rounded-md max-w-[15rem] w-full newshadow flex flex-col justify-between">
         <img
           src={data.banner}
-          alt="Card Image"
+          alt={data.drink}
           className="rounded-t-md object-cover w-full h-44"
         />
 

@@ -55,7 +55,7 @@ const PizzaCards = ({ data, idx }) => {
       <div className="">
         <img
           src={data?.banner}
-          alt="Card Image"
+          alt={data?.pizzaName}
           className="h-52 w-full rounded-t-md object-cover"
         />
       </div>
@@ -63,7 +63,7 @@ const PizzaCards = ({ data, idx }) => {
         {" "}
         <div
           className={` rounded-md  w-6 h-6 border-2 flex justify-center items-center bg-white ${
-            data?.filter?._id === "666941b94af3128843e747bb"
+             data?.filter?.filter === "Vegetarian"
               ? "border-green-600 "
               : "border-red-800"
           }`}
